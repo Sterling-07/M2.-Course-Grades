@@ -2,20 +2,76 @@
 //
 
 #include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
+
+struct student {
+	string name;
+	int id;
+	int* testScores;
+	double average;
+	char letter;
+};
+
+void readData(int &numStudents, int &numTests, student* &students);
+void calcAverage(double &avg, int& numStudents, int& numTests, student* students);
+void getLetterGrade();
+void printData();
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int numStudents, numTests;
+	double avg;
+	student* students = nullptr;
+
+	readData(numStudents, numTests, students);
+
+	calcAverage(avg, numStudents, numTests, students);
+
+	for (int a = 0; a < numStudents; a++)
+	{
+		cout << students[a].average << " ";
+		cout << endl;
+	}
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void readData(int& numStudents, int& numTests, student* &students)
+{
+	ifstream inputfile("student data.txt");
+	if (!inputfile)
+	{
+		cout << "There was an error opening the file.\n";
+	}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	inputfile >> numStudents >> numTests;
+
+	students = new student[numStudents];
+
+	for (int a = 0; a < numStudents; a++)
+	{
+		inputfile >> students[a].name;
+		inputfile >> students[a].id;
+
+		students[a].testScores = new int[numTests];
+		for (int b = 0; b < numTests; b++)
+		{
+			inputfile >> students[a].testScores[b];
+		}
+	}
+}
+
+void calcAverage(double &avg, int& numStudents, int& numTests, student* students)
+{
+	for (int a = 0; a < numStudents; a++)
+	{
+		avg = 0;
+		for (int b = 0; b < numTests; b++)
+		{
+			avg += students[a].testScores[b];
+		}
+		students[a].average = avg / numTests;
+	}
+}
