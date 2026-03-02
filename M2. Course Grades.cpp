@@ -6,7 +6,8 @@
 #include <fstream>
 using namespace std;
 
-struct student {
+struct student 
+{
 	string name;
 	int id;
 	int* testScores;
@@ -16,8 +17,8 @@ struct student {
 
 void readData(int &numStudents, int &numTests, student* &students);
 void calcAverage(double &avg, int& numStudents, int& numTests, student* students);
-void getLetterGrade();
-void printData();
+void getLetterGrade(int &numStudents, student* students);
+void printData(int &numStudents, student* students);
 
 int main()
 {
@@ -26,12 +27,12 @@ int main()
 	student* students = nullptr;
 
 	readData(numStudents, numTests, students);
-
 	calcAverage(avg, numStudents, numTests, students);
+	getLetterGrade(numStudents, students);
 
 	for (int a = 0; a < numStudents; a++)
 	{
-		cout << students[a].average << " ";
+		cout << students[a].letter << " ";
 		cout << endl;
 	}
 
@@ -74,4 +75,36 @@ void calcAverage(double &avg, int& numStudents, int& numTests, student* students
 		}
 		students[a].average = avg / numTests;
 	}
+}
+
+void getLetterGrade(int& numStudents, student* students)
+{
+	for (int a = 0; a < numStudents; a++)
+	{
+		if (students[a].average >= 90 && students[a].average <= 100)
+		{
+			students[a].letter = 'A';
+		}
+		else if (students[a].average >= 80)
+		{
+			students[a].letter = 'B';
+		}
+		else if (students[a].average >= 70)
+		{
+			students[a].letter = 'C';
+		}
+		else if (students[a].average >= 60)
+		{
+			students[a].letter = 'D';
+		}
+		else
+		{
+			students[a].letter = 'F';
+		}
+	}
+}
+
+void printData(int& numStudents, student* students)
+{
+
 }
