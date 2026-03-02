@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 struct student 
@@ -29,12 +30,7 @@ int main()
 	readData(numStudents, numTests, students);
 	calcAverage(avg, numStudents, numTests, students);
 	getLetterGrade(numStudents, students);
-
-	for (int a = 0; a < numStudents; a++)
-	{
-		cout << students[a].letter << " ";
-		cout << endl;
-	}
+	printData(numStudents, students);
 
 	return 0;
 }
@@ -106,5 +102,28 @@ void getLetterGrade(int& numStudents, student* students)
 
 void printData(int& numStudents, student* students)
 {
-
+	cout << setw(27) << "Student Information\n";
+	cout << "----------------------------------\n";
+	cout << setw(6) << "Name" << setw(4) << "|" << setw(4) << "ID" << setw(3) << "|" << setw(8) 
+		<< "Average" << setw(2) << "|" << setw(7) << "Letter" << endl;
+	cout << setw(8) << students[0].name << setw(2) << "|" << setw(5) << students[0].id << setw(2) 
+		<< "|" << setw(6) << students[0].average << setw(4) << "|" << setw(4) << students[0].letter << endl;
+	cout << setw(8) << students[1].name << setw(2) << "|" << setw(5) << students[1].id << setw(2) 
+		<< "|" << setw(6) << students[1].average << setw(4) << "|" << setw(4) << students[1].letter << endl;
+	cout << setw(7) << students[2].name << setw(3) << "|" << setw(5) << students[2].id << setw(2) 
+		<< "|" << setw(6) << students[2].average << setw(4) << "|" << setw(4) << students[2].letter << endl;
+	cout << setw(6) << students[3].name << setw(4) << "|" << setw(5) << students[3].id << setw(2) 
+		<< "|" << setw(6) << students[3].average << setw(4) << "|" << setw(4) << students[3].letter << endl;
+	cout << setw(6) << students[4].name << setw(4) << "|" << setw(5) << students[4].id << setw(2) 
+		<< "|" << setw(6) << students[4].average << setw(4) << "|" << setw(4) << students[4].letter << endl;
+	cout << setw(6) << students[5].name << setw(4) << "|" << setw(5) << students[5].id << setw(2) 
+		<< "|" << setw(6) << students[5].average << setw(4) << "|" << setw(4) << students[5].letter << endl;
+	cout << setw(8) << students[6].name << setw(2) << "|" << setw(5) << students[6].id << setw(2) 
+		<< "|" << setw(6) << students[6].average << setw(4) << "|" << setw(4) << students[6].letter << endl;
+	cout << setw(8) << students[7].name << setw(2) << "|" << setw(5) << students[7].id << setw(2) 
+		<< "|" << setw(4) << students[7].average << setw(6) << "|" << setw(4) << students[7].letter << endl;
+	cout << setw(6) << students[8].name << setw(4) << "|" << setw(5) << students[8].id << setw(2) 
+		<< "|" << setw(6) << students[8].average << setw(4) << "|" << setw(4) << students[8].letter << endl;
+	cout << setw(6) << students[9].name << setw(4) << "|" << setw(5) << students[9].id << setw(2) 
+		<< "|" << setw(6) << students[9].average << setw(4) << "|" << setw(4) << students[9].letter << endl;
 }
