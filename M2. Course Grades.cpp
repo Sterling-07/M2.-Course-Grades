@@ -32,6 +32,11 @@ int main()
 	getLetterGrade(numStudents, students);
 	printData(numStudents, students);
 
+	for (int a = 0; a < numStudents; a++)
+	{
+		delete[] students[a].testScores;
+	}
+	delete[] students;
 	return 0;
 }
 
